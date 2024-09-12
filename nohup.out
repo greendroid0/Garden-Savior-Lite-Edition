@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/root/Garden-Savior-Lite-Edition/Garden-Savior-Light.py", line 25, in <module>
+    time.sleep(1)  # Sleep for a short interval to avoid high CPU usage
+KeyboardInterrupt

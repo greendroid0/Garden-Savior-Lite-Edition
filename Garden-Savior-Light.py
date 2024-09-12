@@ -17,7 +17,7 @@ def send_message():
     bot.send_message(CHAT_ID, "Water the tomatoes!")
 
 # Schedule the message to be sent every 2 day at 15:00 PM
-schedule.every(2).day.at("15:00").do(send_message)
+schedule.every(2).days.at("15:00").do(send_message)
 
 # Main loop to keep the script running and checking for scheduled tasks
 while True:
