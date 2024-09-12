@@ -1,4 +1,6 @@
 # Garden-Savior-Lite-Edition
+![garden-savior-lite](garden-savior-lite.png)
+
 ## How to start program:
 - source .env
 - python3 Garden-Savior-Light.py
