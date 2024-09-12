@@ -16,10 +16,29 @@ CHAT_ID = "261535306"
 def send_message():
     bot.send_message(CHAT_ID, "Water the tomatoes!")
 
+@bot.message_handler(func=lambda msg: True)
+def echo_all(message):
+    bot.reply_to(message, "Hi, I'm alive! :) ")
+
 # Schedule the message to be sent every 2 day at 15:00 PM
 schedule.every(2).days.at("15:00").do(send_message)
 
 # Main loop to keep the script running and checking for scheduled tasks
-while True:
-    schedule.run_pending()  # Run the scheduled task if it's time
-    time.sleep(1)  # Sleep for a short interval to avoid high CPU usage
+def main_loop():
+    offset = None
+    while True:
+        schedule.run_pending()  # Run the scheduled task if it's time
+        # Get updates from Telegram
+        updates = bot.get_updates(offset=offset, timeout=10)
+
+        for update in updates:
+            # Process each update
+            bot.process_new_updates([update])
+            # Update the offset to avoid re-processing the same messages
+            offset = update.update_id + 1
+
+        # Your other code logic can go here
+        print("Main loop is running...")
+        time.sleep(5)  # Adjust the sleep time as needed
+
+main_loop()
